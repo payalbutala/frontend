@@ -20,3 +20,21 @@ let obj = {
   },
 };
 obj.getPrintInfo();
+
+// Points to Global/Window object when its inside function inside function 2 times
+let obj2 = {
+  name: "Vishal",
+  age: 30,
+  testFunction: function () {
+    console.log("4", this); // Points to object { name: "Vishal", age: 30, ..}
+    function g() {
+      const a = 2;
+      const b = 3;
+      const sum = a + b;
+      console.log("sum", sum); // 5
+      console.log("5", this); // undefined : As obj is not defined don't use this keyword
+    }
+    g();
+  },
+};
+obj2.testFunction();
